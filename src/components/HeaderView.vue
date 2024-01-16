@@ -387,20 +387,20 @@ export default {
         this.verify_phone_number = null
       }
       let register_phone_number = document.getElementById('register_phone_number')
-      // try{
-      //   const response = await axios.post('http://eccommerce/api/phone-register', {
-      //     'phone':register_phone_number.value
-      //   })
-      //   if(response.data.status == true){
-      //     localStorage.setItem('verify_phone_number', register_phone_number.value)
-      //     this.verify_phone_number = register_phone_number.value
-      //     this.verifyContent = true
-      //     this.$toast.success(this.$t('Sms code was sent to your phone'));
-      //   }
-      // }catch (e) {
-      //   this.$toast.warning(this.$t('Resend sms code'));
-      //   console.log(e)
-      // }
+      try{
+        const response = await axios.post('http://eccommerce/api/phone-register', {
+          'phone':register_phone_number.value
+        })
+        if(response.data.status == true){
+          localStorage.setItem('verify_phone_number', register_phone_number.value)
+          this.verify_phone_number = register_phone_number.value
+          this.verifyContent = true
+          this.$toast.success(this.$t('Sms code was sent to your phone'));
+        }
+      }catch (e) {
+        this.$toast.warning(this.$t('Resend sms code'));
+        console.log(e)
+      }
       localStorage.setItem('verify_phone_number', register_phone_number.value)
       this.verify_phone_number = register_phone_number.value
       this.verifyContent = true
